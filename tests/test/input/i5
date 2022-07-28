@@ -1,0 +1,12 @@
+673
+##end
+end 13 0 #bedroom
+
+salle1 5 0
+# The next room is the kitchen
+salle2 9 0
+##start
+s 1 0
+s-salle2
+end-s
+salle1-salle2

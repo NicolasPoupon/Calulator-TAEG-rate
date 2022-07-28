@@ -1,0 +1,14 @@
+#number_of_ants
+673
+#rooms
+##end
+end 13 0
+salle1 5 0
+salle2 9 0
+##start
+s 1 0
+#tunnels
+s-salle2
+end-s
+salle1-salle2
+#moves
