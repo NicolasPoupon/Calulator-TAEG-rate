@@ -21,6 +21,7 @@ struct param {
     double insurance_costs;
     double monthly_payments;
     double amount_of_interest;
+    double taeg;
 };
 
 // error_handling_borwein
