@@ -11,6 +11,18 @@
     #define EXIT_SUCESS 0
     #define EXIT_ERROR 84
 
+struct param {
+    double A;
+    double P;
+    double N;
+    double WC;
+    double F;
+    double I;
+    double insurance_costs;
+    double monthly_payments;
+    double amount_of_interest;
+};
+
 // error_handling_borwein
 int error_handling(int ac, char **av);
 void my_puterr(char *str);
