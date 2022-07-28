@@ -36,7 +36,7 @@ static struct param *init_param(char **av)
 
 static void calc_amount_of_interest(struct param *p)
 {
-    p->amount_of_interest = p->A - p->monthly_payments * p->P + p->WC + p->F;
+    p->amount_of_interest = p->A - p->monthly_payments * p->P / 12 + p->WC + p->F;
 }
 
 static void calc_monthly_payments(struct param *p)
