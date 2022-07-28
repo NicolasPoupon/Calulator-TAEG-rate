@@ -54,6 +54,7 @@ int error_handling(int ac, char **av)
     int (*ptrf_err[])() = {err_amount_borrowed, err_borrowing_period,
     err_nominal_rate, err_warranty_costs, err_filing_and_brokerage_fees,
     err_insurance_rate};
+
     if (ac != 7) {
         dprintf(2, "Error : should have 6 numbers\n");
         return EXIT_ERROR;

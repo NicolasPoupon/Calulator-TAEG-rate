@@ -1,4 +1,4 @@
-/*
+ /*
 ** EPITECH PROJECT, 2021
 ** trigo.c
 ** File description:
@@ -36,14 +36,14 @@ static struct param *init_param(char **av)
 
 static void calc_amount_of_interest(struct param *p)
 {
-    p->amount_of_interest = p->A - p->monthly_payments * p->P;
+    p->amount_of_interest = p->A - p->monthly_payments * p->P + p->WC + p->F;
 }
 
 static void calc_monthly_payments(struct param *p)
 {
-    double rate = p->N / 100;
+    double rate = p->N / 100 / 12;
 
-    p->monthly_payments = p->A * (rate / (1 - pow(1 - rate, -(p->P))));
+    p->monthly_payments = p->A * rate / (1 - pow(1 + rate, -p->P));
 }
 
 static void calc_insurance_costs(struct param *p)
@@ -61,7 +61,7 @@ static void print_all_res(struct param *p)
     printf("\n\tinsurance cost  \t:\t%.2f\n", p->insurance_costs);
     printf("\tmonthly payments\t:\t%.2f\n", p->monthly_payments);
     printf("\tamont of interest\t:\t%.2f\n\n", p->amount_of_interest);
-    printf("\tTAEG :\t%.2f\n\n", p->taeg);
+    printf("\tTAEG :\t%.2f%%\n\n", p->taeg);
 }
 
 int taeg(char **av)
@@ -78,3 +78,4 @@ int taeg(char **av)
     free(p);
     return EXIT_SUCCESS;
 }
+

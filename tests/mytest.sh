@@ -17,7 +17,7 @@ finalres=0;
 PATH_SOL='tests/solutions/sol_'
 PATH_RES='tests/results/res_'
 
-NAME_BIN='./110borwein'
+NAME_BIN='./calc_taeg'
 
 echo -e ' '$L\
 ' |\t\t\t\t\t\t\t\t\t|\n'\
@@ -66,19 +66,9 @@ echo '__________________________________________________________________________
 
 # 'argv' 'name of the test'
 err '' 'no argv'
-err '0 0' 'too much argv'
-err '-2' 'n is negative'
-err ':o' 'n is not a nb'
-err '2.3' 'n is a float'
-test '0' 'test subject'
-test '1' 'n = 1'
-test '2' 'n = 2'
-test '6' 'n = 1000'
-test '7' 'n = 7'
-test '42' 'n = 42'
-test '102' 'n = 102'
-test '399' 'n = 399'
-test '1001' 'n = 1001'
+err '1 2 3 4 5 6 7' 'too much argv'
+err '1 2 3 4 5 a' 'incorrect nb'
+test '300000 240 1.7 1500 500 0.3' 'test subject'
 
 echo -e \
 '__________________________________________________________________________\n\n'\
