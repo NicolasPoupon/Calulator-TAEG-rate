@@ -53,7 +53,7 @@ static void calc_insurance_costs(struct param *p)
 
 static void calc_taeg(struct param *p)
 {
-    p->taeg = (p->amount_of_interest / p->A) * p->P / 12;
+    p->taeg = ((p->insurance_costs + p->amount_of_interest) / (p->P / 12)) * 100 / p->A;
 }
 
 static void print_all_res(struct param *p)
