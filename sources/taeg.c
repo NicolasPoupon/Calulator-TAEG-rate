@@ -36,7 +36,7 @@ static struct param *init_param(char **av)
 
 static void calc_amount_of_interest(struct param *p)
 {
-    p->amount_of_interest = p->A - p->monthly_payments * p->P / 12 + p->WC + p->F;
+    p->amount_of_interest = p->P * p->monthly_payments - p->A + p->WC + p->F;
 }
 
 static void calc_monthly_payments(struct param *p)
@@ -53,7 +53,7 @@ static void calc_insurance_costs(struct param *p)
 
 static void calc_taeg(struct param *p)
 {
-    p->taeg = (p->amount_of_interest - p->A) / p->A * (p->monthly_payments * p->P);
+    p->taeg = (p->amount_of_interest / p->A) * p->P / 12;
 }
 
 static void print_all_res(struct param *p)
