@@ -53,7 +53,10 @@ static void calc_insurance_costs(struct param *p)
 
 static void calc_taeg(struct param *p)
 {
-    p->taeg = ((p->insurance_costs + p->amount_of_interest) / (p->P / 12)) * 100 / p->A;
+    double nb_year = p->P / 12;
+    double loan_div_by_cost = (p->A + p->insurance_costs + p->amount_of_interest) / p->A;
+
+    p->taeg = pow(loan_div_by_cost, 1 / nb_year) - 1;
 }
 
 static void print_all_res(struct param *p)
@@ -61,13 +64,18 @@ static void print_all_res(struct param *p)
     printf("\n\tinsurance cost  \t:\t%.2f\n", p->insurance_costs);
     printf("\tmonthly payments\t:\t%.2f\n", p->monthly_payments);
     printf("\tamont of interest\t:\t%.2f\n\n", p->amount_of_interest);
-    printf("\tTAEG :\t%.2f%%\n\n", p->taeg);
+    printf("\tTAEG :\t%.2f%%\n\n", p->taeg * 100);
 }
 
 int taeg(char **av)
 {
     struct param *p = init_param(av);
+    /*double nb_year = (double) 18 / (double) 12;
+    double loan_div_by_cost = (double) 1200 / (double) 1000;
 
+    p->taeg = pow(loan_div_by_cost, 1 / nb_year) - 1;
+    printf("\tTAEG :\t%.2f%%\n\n", p->taeg * 100);
+    return 0;*/
     if (p == NULL)
         return EXIT_ERROR;
     calc_insurance_costs(p);
