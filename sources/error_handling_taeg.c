@@ -15,37 +15,37 @@
 
 static int err_insurance_rate(void)
 {
-    dprintf(2, "Error with insurance rate (parameter 6)\n");
+    dprintf(2, "Error with insurance rate (parameter 6), try calc_taeg -h\n");
     return EXIT_ERROR;
 }
 
 static int err_filing_and_brokerage_fees(void)
 {
-    dprintf(2, "Error with filing and brokerage fees (parameter 5)\n");
+    dprintf(2, "Error with filing and brokerage fees (parameter 5), try calc_taeg -h\n");
     return EXIT_ERROR;
 }
 
 static int err_warranty_costs(void)
 {
-    dprintf(2, "Error with warranty costs (parameter 4)\n");
+    dprintf(2, "Error with warranty costs (parameter 4), try calc_taeg -h\n");
     return EXIT_ERROR;
 }
 
 static int err_nominal_rate(void)
 {
-    dprintf(2, "Error with nominal rate (parameter 3)\n");
+    dprintf(2, "Error with nominal rate (parameter 3), try calc_taeg -h\n");
     return EXIT_ERROR;
 }
 
 static int err_borrowing_period(void)
 {
-    dprintf(2, "Error with borrowing period (parameter 2)\n");
+    dprintf(2, "Error with borrowing period (parameter 2), try calc_taeg -h\n");
     return EXIT_ERROR;
 }
 
 static int err_amount_borrowed(void)
 {
-    dprintf(2, "Error with amount borrowed (parameter 1)\n");
+    dprintf(2, "Error with amount borrowed (parameter 1), try calc_taeg -h\n");
     return EXIT_ERROR;
 }
 
@@ -56,7 +56,7 @@ int error_handling(int ac, char **av)
     err_insurance_rate};
 
     if (ac != 7) {
-        dprintf(2, "Error : should have 6 numbers\n");
+        dprintf(2, "Error : should have 6 numbers, try calc_taeg -h\n");
         return EXIT_ERROR;
     }
     for (int i = 1; av[i] != NULL; i++) {

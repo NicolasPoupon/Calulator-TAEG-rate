@@ -51,38 +51,48 @@ static void calc_insurance_costs(struct param *p)
     p->insurance_costs = p->I / 100 * p->A * p->P / 12;
 }
 
-static void calc_taeg(struct param *p)
+static int calc_taeg(struct param *p)
 {
-    double nb_year = p->P / 12;
-    double loan_div_by_cost = (p->A + p->insurance_costs + p->amount_of_interest) / p->A;
+    double total_cost = p->insurance_costs + p->amount_of_interest + p->WC + p->F;
+    double buff_cost = 0;
+    double min = 0;
+    double max = 10;
 
-    p->taeg = pow(loan_div_by_cost, 1 / nb_year) - 1;
-}
+    for (int i = 0; i != 50; i++) {
+        p->N = (max + min) / 2;
+        calc_monthly_payments(p);
+        calc_amount_of_interest(p);
+        buff_cost = p->amount_of_interest;
+        if (total_cost < buff_cost)
+            max = (min + max) / 2;
+        else
+            min = (min + max) / 2;
+    }
+    p->taeg = p->N;
+    if (p->taeg >= (double) 9.9 || p->taeg <= (double) 0.01) {
+        printf("TAEG should be > 0 and < 10, the parameters should be wrong!\n\n");
+        return EXIT_ERROR;
+    }
+    printf("\tTAEG :\t%.2f%%\n\n", p->taeg);
+    return 0;
 
-static void print_all_res(struct param *p)
-{
-    printf("\n\tinsurance cost  \t:\t%.2f\n", p->insurance_costs);
-    printf("\tmonthly payments\t:\t%.2f\n", p->monthly_payments);
-    printf("\tamont of interest\t:\t%.2f\n\n", p->amount_of_interest);
-    printf("\tTAEG :\t%.2f%%\n\n", p->taeg * 100);
 }
 
 int taeg(char **av)
 {
     struct param *p = init_param(av);
-    /*double nb_year = (double) 18 / (double) 12;
-    double loan_div_by_cost = (double) 1200 / (double) 1000;
 
-    p->taeg = pow(loan_div_by_cost, 1 / nb_year) - 1;
-    printf("\tTAEG :\t%.2f%%\n\n", p->taeg * 100);
-    return 0;*/
     if (p == NULL)
         return EXIT_ERROR;
+
     calc_insurance_costs(p);
+    printf("\n\tinsurance cost  \t:\t%.2f\n", p->insurance_costs);
     calc_monthly_payments(p);
+    printf("\tmonthly payments\t:\t%.2f\n", p->monthly_payments);
     calc_amount_of_interest(p);
-    calc_taeg(p);
-    print_all_res(p);
+    printf("\tamont of interest\t:\t%.2f\n\n", p->amount_of_interest);
+    if (calc_taeg(p) == EXIT_ERROR)
+        return EXIT_ERROR;
     free(p);
     return EXIT_SUCCESS;
 }

@@ -1,11 +1,7 @@
-Midpoint:
-I6 = 1.5707963268
-diff = 0.0000000000
 
-Trapezoidal:
-I6 = 1.5707963268
-diff = 0.0000000000
+	insurance cost  	:	62500.00
+	monthly payments	:	3906.08
+	amont of interest	:	174623.46
 
-Simpson:
-I6 = 1.5707963268
-diff = 0.0000000000
+	TAEG :	1.76%
+
