@@ -2,7 +2,7 @@ USAGE
     ./calc_taeg A P N WC F I
 
 DESCRIPTION
-Calculates TAEG rate, each parameter must be a single or floating point number
+Calculates TAEG rate, each parameter must be a single or floating point number :)
         A       amount borrowed
         P       borrowing period (months)
         N       nominal rate
